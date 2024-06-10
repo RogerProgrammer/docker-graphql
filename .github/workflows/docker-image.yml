@@ -22,8 +22,10 @@ jobs:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USER }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       run: |
-        echo "Iniciando login"
         docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-        echo "Find de login"
-#    - name: Build the Docker image
-#      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+    - name: Build Docker Image
+      run: |
+        docker build --tag roger1245/docker-graphql:0.0.2 .
+    - name: Push Docker Image
+      run: |
+        docker push roger1245/docker-graphql:0.0.2 .
